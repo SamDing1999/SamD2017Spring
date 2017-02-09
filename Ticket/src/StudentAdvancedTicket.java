@@ -3,7 +3,7 @@ public class StudentAdvancedTicket extends AdvancedTicket{
 	
 	public StudentAdvancedTicket(int ticketNumber, int daysInAdvance){
 		super(ticketNumber, daysInAdvance);
-		 if(daysInAdvance >= limit){
+		 if(daysInAdvance >= limitDays){
 		    	super.price = 15;
 		    }else{
 		    	super.price = 20;

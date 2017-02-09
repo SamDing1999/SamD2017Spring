@@ -14,4 +14,9 @@ public class Ticket {
 	public String toString(){
 	    return ( "Number: " + this.ticketNum + ", Price: " + this.getPrice());
 	}
+	
+	public static void main(String[] args){
+		AdvancedTicket janson = new AdvancedTicket(17, 4);
+		janson.toString();
+	}
 }
