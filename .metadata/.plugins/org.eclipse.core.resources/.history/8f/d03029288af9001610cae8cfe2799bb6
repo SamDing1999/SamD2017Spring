@@ -4,7 +4,8 @@ import java.util.*;
 public class Change {
 
 	public static void main(String[] args) {
-		Scanner input = new Scanner(new File("weather"));
+		File change = new File();
+		Scanner input = new Scanner(new File("change"));
 		double first = input.nextDouble();
 		for(int i = 0; i< 7; i++){
 			System.out.println("Please record the temperature");
