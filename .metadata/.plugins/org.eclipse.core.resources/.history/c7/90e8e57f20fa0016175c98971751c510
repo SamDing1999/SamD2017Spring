@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Change {
 
-	public static void main(String[] args) throws FileNotFoundException{
+	public static void main(String[] args){
 		Scanner input = new Scanner(new File("weather.txt"));
 		System.out.println("Please record the temperature");
 		double first = input.nextDouble();
