@@ -13,10 +13,12 @@ public class Change {
 		for(int i = 0; i< 7; i++){
 			System.out.println("Please record the temperature");
 			double temp = input.nextDouble();
-			System.out.println(first + " to "+ temp + ", change = " + (double)(temp-first));
+			double difference = (Math.round((temp-first)*100)) / (100.0);
+			System.out.println(first + " to "+ temp + ", change = " + difference);
 			first = temp;
 		}
 
 	}
 
+	
 }
