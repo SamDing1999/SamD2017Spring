@@ -4,8 +4,7 @@ import java.util.*;
 public class Change {
 
 	public static void main(String[] args) throws FileNotFoundException{
-		Scanner input = new Scanner(new File("weather.txt"));
-		System.out.println("Please record the temperature");
+		Scanner input = new Scanner(new File("./weatherFolder/weather"));
 		double first = input.nextDouble();
 		for(int i = 0; i< 7; i++){
 			System.out.println("Please record the temperature");
