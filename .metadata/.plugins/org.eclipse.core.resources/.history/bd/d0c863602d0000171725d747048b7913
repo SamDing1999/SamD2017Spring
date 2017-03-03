@@ -5,29 +5,25 @@ package textExcel;
 public class Spreadsheet implements Grid
 {
 
-	private int row = 20;
-	private int col = 12;
-	private String command;
 	@Override
 	public String processCommand(String command)
 	{
 		// TODO Auto-generated method stub
-		this.command = command;
-		return this.command;
+		return null;
 	}
 
 	@Override
 	public int getRows()
 	{
-		
-		return this.row;
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
 	public int getCols()
 	{
-		
-		return this.col;
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
