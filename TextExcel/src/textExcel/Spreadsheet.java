@@ -8,7 +8,7 @@ public class Spreadsheet implements Grid
 	private int row = 20;
 	private int col = 12;
 	private String command;
-	@Override
+	
 	public String processCommand(String command)
 	{
 		// TODO Auto-generated method stub
@@ -16,14 +16,14 @@ public class Spreadsheet implements Grid
 		return this.command;
 	}
 
-	@Override
+	
 	public int getRows()
 	{
 		
 		return this.row;
 	}
 
-	@Override
+	
 	public int getCols()
 	{
 		
