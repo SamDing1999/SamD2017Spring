@@ -5,16 +5,16 @@ public class EmptyCell implements Cell {
 	public EmptyCell(){
 		
 	}
-	
+	@Override
 	public String abbreviatedCellText() {
-		
-		return "";
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	
+	@Override
 	public String fullCellText() {
-		
-		return "";
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -16,7 +16,7 @@ public class TextExcel
 	    do{
 	    	test.processCommand(command);
 	    	command = input.next();
-	    }while(!command.equals("quit"));
+	    }while(!input.equals("quit"));
 	    
 	    
 	    
