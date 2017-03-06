@@ -8,6 +8,7 @@ public class Spreadsheet implements Grid
 	private int row = 20;
 	private int col = 12;
 	private String command;
+	private String grid;
 	
 	public String processCommand(String command)
 	{
@@ -37,11 +38,18 @@ public class Spreadsheet implements Grid
 		return null;
 	}
 
-	@Override
+	
 	public String getGridText()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		
+		for(int i = 0 ; i < 20; i++){
+			for(int j = 0; j < 12; j++){
+				grid += 
+			}
+		
+		}
+		
+		return grid;
 	}
 
 }
