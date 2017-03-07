@@ -11,7 +11,8 @@ public class TextExcel
 	public static void main(String[] args)
 	{
 		Spreadsheet test = new Spreadsheet();
-		
+		String a = "A1";
+		System.out.println( Arrays.toString(a.split("=")));
 		Scanner input = new Scanner(System.in);
 		String command = input.next();
 	    do{
