@@ -18,7 +18,7 @@ public class Spreadsheet implements Grid
 		//clearing a particular cell (e.g., clear A1).
 			
 		}else if(Command[1].substring(0,1).equals("=")){
-		//assignment to string values (e.g., A1 = “Hello”).
+		//assignment to string values (e.g., A1 = "Hello").
 			Location cell = new SpreadsheetLocation(Command[0]);
 			grid[cell.getRow()][cell.getCol()] = Command[2].substring(1);
 		}else{

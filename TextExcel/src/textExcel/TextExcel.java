@@ -11,7 +11,7 @@ public class TextExcel
 	public static void main(String[] args)
 	{
 		Spreadsheet test = new Spreadsheet();
-		
+		test.getGridText();
 		Scanner input = new Scanner(System.in);
 		String command = input.next();
 	    do{
