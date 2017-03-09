@@ -12,15 +12,11 @@ public class TextExcel
 	{
  
 		String letter = "";
-		
-		System.out.println(ha);
-		for(char i = 'A'; i<='L';i++){
-			letter = i + "         |";
-		}
-		System.out.println(letter);
+		Cell a = new EmptyCell();
+		a.abbreviatedCellText();
 		Spreadsheet test = new Spreadsheet();
 
-		test.getGridText();
+		//test.getGridText();
 		
 		Scanner input = new Scanner(System.in);
 		String command = input.next();

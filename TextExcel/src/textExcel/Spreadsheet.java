@@ -7,10 +7,10 @@ public class Spreadsheet implements Grid
 
 
 	private String command;
-	private Cell[][] grid = new EmptyCell[12][20];
+	private Cell[][] grid;
 	
 	public Spreadsheet(){
-		
+		grid = new EmptyCell[20][12];
 	}
 	
 	public String processCommand(String command)
@@ -18,7 +18,7 @@ public class Spreadsheet implements Grid
 		
 		/*String[] Command = command.split(" ");
 		
-		if(Command.equals(haha)){                   								//REDO
+		if(Command.equals()){                   								//REDO
 		//clearing a particular cell (e.g., clear A1).
 			
 		}else if(Command[1].substring(0,1).equals("=")){
@@ -61,13 +61,35 @@ public class Spreadsheet implements Grid
 	
 	public String getGridText()
 	{
+		grid = new EmptyCell[20][12];
 		String Grid = ""; 
-		String letter = "";
+		String topLetter = "   |";
 		for(char i = 'A'; i<='L'; i++){
-			letter = i + "         |";
+			topLetter += i + "         |";
 		}
 		
-		return letter;
+		String numbers = "\n";
+		for(int i = 0;i < 20;i++){
+			if(i<9){
+				numbers += (i+1);
+				numbers += "  |";
+				for(int j = 0; j<12;j++){
+					numbers += grid[i][j].abbreviatedCellText() + "|";
+				}
+				numbers +="\n";
+			}else{
+				numbers += (i+1);
+				numbers += " |";
+				for(int j = 0; j<12;j++){
+					numbers += grid[i][j].abbreviatedCellText() + "|";
+				}
+				numbers +="\n";
+			}
+		}
+		
+		
+		Grid = topLetter + numbers;
+		return Grid;
 	}
 
 }
