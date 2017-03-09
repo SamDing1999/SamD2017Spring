@@ -12,10 +12,10 @@ public class TextExcel
 	{
  
 		String letter = "";
-		
+		int ha = 'A'+1;
 		System.out.println(ha);
 		for(char i = 'A'; i<='L';i++){
-			letter = i + "         |";
+			letter = String.valueOf(i) + "         |";
 		}
 		System.out.println(letter);
 		Spreadsheet test = new Spreadsheet();

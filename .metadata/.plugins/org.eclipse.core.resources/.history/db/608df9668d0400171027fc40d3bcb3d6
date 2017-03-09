@@ -10,14 +10,6 @@ public class TextExcel
 
 	public static void main(String[] args)
 	{
- 
-		String letter = "";
-		
-		System.out.println(ha);
-		for(char i = 'A'; i<='L';i++){
-			letter = i + "         |";
-		}
-		System.out.println(letter);
 		Spreadsheet test = new Spreadsheet();
 
 		test.getGridText();

@@ -12,9 +12,7 @@ public class TextExcel
 	{
  
 		String letter = "";
-		
-		System.out.println(ha);
-		for(char i = 'A'; i<='L';i++){
+		for(char i = 'A'; i<='L'; i++){
 			letter = i + "         |";
 		}
 		System.out.println(letter);
