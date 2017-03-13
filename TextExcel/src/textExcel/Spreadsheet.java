@@ -21,40 +21,43 @@ public class Spreadsheet implements Grid
 	
 	public String processCommand(String command)
 	{
-		
+		Location loc;
 		String[] Command = command.split(" ");
 		
 		if(Command.length == 2&&Command[0].toLowerCase().equals("clear")){  		//clearing a particular cell (e.g., clear A1).
-			Location loc = new SpreadsheetLocation(Command[1]);
+			loc = new SpreadsheetLocation(Command[1]);
 			Cell input = new EmptyCell();
 			grid[loc.getRow()][loc.getCol()] = input;
 			return getGridText();
 			
 		}else if(Command.length == 3){						//assignment to string values (e.g., A1 = "Hello").
-			Location loc = new SpreadsheetLocation(Command[0]); 
-			Cell input = new TextCell(Command[2].substring(1, Command[2].length()-1));
+			loc = new SpreadsheetLocation(Command[0]); 
+			TextCell input = new TextCell(Command[2].substring(1, Command[2].length()-1));
 			grid[loc.getRow()][loc.getCol()] = input;
 			return getGridText();
 			
 		}else{
-			if(Command[0].equals("clear")){           		//clearing the entire sheet (e.g., clear).
-				Cell clear = new EmptyCell();
-				for(int i = 0; i<20;i++){
-					for(int j = 0;j<12;j++){
-						grid [i][j] = clear;
-					}
-				}
-				return getGridText();
-			}else{     									//cell inspection (e.g., A1). This should return the value at that cell
-				Location loc = new SpreadsheetLocation(Command[0]); 
-				command = "\"" + grid[loc.getRow()][loc.getCol()].fullCellText() + "\"";
-				return command;
+			if(Command.length==1&&Command[0].toLowerCase().equals("clear")){  //clearing the entire sheet (e.g., clear).
+				clear();
+				
+			}else{     			//cell inspection (e.g., A1). This should return the value at that cell
+				loc = new SpreadsheetLocation(Command[0]); 
+				String content = "\"" + grid[loc.getRow()][loc.getCol()].fullCellText() + "\"";
+				return content;
 			}
 		}	
 		
 	}
 
-	
+	public String clear(){
+		Cell clear = new EmptyCell();
+		for(int i = 0; i<20;i++){
+			for(int j = 0;j<12;j++){
+				grid [i][j] = clear;
+			}
+		}
+		return getGridText();
+	}
 	public int getRows()
 	{
 		
@@ -68,7 +71,7 @@ public class Spreadsheet implements Grid
 		return 12;
 	}
 
-@Override
+
 	public Cell getCell(Location loc)
 	{
 		

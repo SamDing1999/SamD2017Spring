@@ -13,6 +13,9 @@ public class TextCell implements Cell {
 		String abbreviated;
 		if(strlength < 10){
 			abbreviated = content.substring(0);
+			for(int i = 0; i < 10-strlength;i++){
+				abbreviated += " ";
+			}
 		}else{
 			abbreviated = content.substring(0, 10);
 		}
@@ -22,7 +25,7 @@ public class TextCell implements Cell {
 	
 	public String fullCellText() {
 		
-		return content;
+		return "\""+ content + "\"";
 	}
 
 }

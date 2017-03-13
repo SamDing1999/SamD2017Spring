@@ -17,7 +17,7 @@ public class TextExcel
 		System.out.println(b);
 		Grid test = new Spreadsheet();
 
-		
+		test.processCommand("A1 = \"hahahhahah\"");
 		
 		TestsALL.Helper th = new TestsALL.Helper();
         System.out.println(th.getText());
