@@ -7,34 +7,51 @@ public class Spreadsheet implements Grid
 
 
 	private String command;
-	private Cell[][] grid;
+	private Cell[][] grid = new EmptyCell [20] [12];;
 	
 	public Spreadsheet(){
-		grid = new EmptyCell[20][12];
+
+		for (int i = 0; i < 20; i++){
+			for (int j = 0; j< 12; j++){
+				grid [i][j] = new EmptyCell();
+			}
+		}
 	}
+	
 	
 	public String processCommand(String command)
 	{
 		
-		/*String[] Command = command.split(" ");
+		String[] Command = command.split(" ");
 		
-		if(Command.equals()){                   								//REDO
-		//clearing a particular cell (e.g., clear A1).
+		if(Command.length == 2&&Command[0].toLowerCase().equals("clear")){  		//clearing a particular cell (e.g., clear A1).
+			Location loc = new SpreadsheetLocation(Command[1]);
+			Cell input = new EmptyCell();
+			grid[loc.getRow()][loc.getCol()] = input;
+			return getGridText();
 			
-		}else if(Command[1].substring(0,1).equals("=")){
-		//assignment to string values (e.g., A1 = "Hello").
-			Location cell = new SpreadsheetLocation(Command[0]);
-			grid[cell.getRow()][cell.getCol()] = test;				//Redo this part b/c it is just a test code
+		}else if(Command.length == 3){						//assignment to string values (e.g., A1 = "Hello").
+			Location loc = new SpreadsheetLocation(Command[0]); 
+			Cell input = new TextCell(Command[2].substring(1, Command[2].length()-1));
+			grid[loc.getRow()][loc.getCol()] = input;
+			return getGridText();
+			
 		}else{
-			if(Command.equals("clear")){
-				//clearing the entire sheet (e.g., clear).
-				
-			}else{
-		//cell inspection (e.g., A1). This should return the value at that cell
-			
+			if(Command[0].equals("clear")){           		//clearing the entire sheet (e.g., clear).
+				Cell clear = new EmptyCell();
+				for(int i = 0; i<20;i++){
+					for(int j = 0;j<12;j++){
+						grid [i][j] = clear;
+					}
+				}
+				return getGridText();
+			}else{     									//cell inspection (e.g., A1). This should return the value at that cell
+				Location loc = new SpreadsheetLocation(Command[0]); 
+				command = "\"" + grid[loc.getRow()][loc.getCol()].fullCellText() + "\"";
+				return command;
 			}
-		}	*/
-		return command;
+		}	
+		
 	}
 
 	
@@ -55,13 +72,17 @@ public class Spreadsheet implements Grid
 	public Cell getCell(Location loc)
 	{
 		
-		return null;
+		int row = loc.getRow();
+		int column = loc.getCol();
+		return grid[row][column];
+
 	}
 
 	
 	public String getGridText()
 	{
-		grid = new EmptyCell[20][12];
+		
+		
 		String Grid = ""; 
 		String topLetter = "   |";
 		for(char i = 'A'; i<='L'; i++){
