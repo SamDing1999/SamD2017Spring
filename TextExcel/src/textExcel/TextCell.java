@@ -5,7 +5,7 @@ public class TextCell implements Cell {
 	private String content;
 	
 	public TextCell(String s) {
-		content = s;
+		content = s.substring(1,s.length()-1);
 	}
 
 	public String abbreviatedCellText() {

@@ -29,7 +29,7 @@ public class Spreadsheet implements Grid
 			return getGridText();
 			
 		}else if(Command.length == 3){						//assignment to string values (e.g., A1 = "Hello").
-			assignValue(Command[2]);
+			assignValue(Command);
 			return getGridText();
 			
 		}else{
@@ -110,10 +110,9 @@ public class Spreadsheet implements Grid
 		grid[loc.getRow()][loc.getCol()] = new EmptyCell();
 	}
 	
-	public void assignValue(String cell){
-		SpreadsheetLocation loc = new SpreadsheetLocation(cell.toUpperCase());
-		String input = cell.substring(1, cell.length()-1);
-		grid[loc.getRow()][loc.getCol()] = new TextCell(input);
+	public void assignValue(String[] cell){
+		SpreadsheetLocation loc = new SpreadsheetLocation(cell[0].toUpperCase());
+		grid[loc.getRow()][loc.getCol()] = new TextCell(cell[2]);
 	}
 	
 	public String inspectCell(String cell){
