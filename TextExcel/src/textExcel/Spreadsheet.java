@@ -25,39 +25,26 @@ public class Spreadsheet implements Grid
 		String[] Command = command.split(" ");
 		
 		if(Command.length == 2&&Command[0].toLowerCase().equals("clear")){  		//clearing a particular cell (e.g., clear A1).
-			loc = new SpreadsheetLocation(Command[1]);
-			Cell input = new EmptyCell();
-			grid[loc.getRow()][loc.getCol()] = input;
+			clearCell(Command[1]);
 			return getGridText();
 			
 		}else if(Command.length == 3){						//assignment to string values (e.g., A1 = "Hello").
-			loc = new SpreadsheetLocation(Command[0]); 
-			TextCell input = new TextCell(Command[2].substring(1, Command[2].length()-1));
-			grid[loc.getRow()][loc.getCol()] = input;
+			assignValue(Command[2]);
 			return getGridText();
 			
 		}else{
 			if(Command.length==1&&Command[0].toLowerCase().equals("clear")){  //clearing the entire sheet (e.g., clear).
 				clear();
+				return getGridText();
 				
 			}else{     			//cell inspection (e.g., A1). This should return the value at that cell
-				loc = new SpreadsheetLocation(Command[0]); 
-				String content = "\"" + grid[loc.getRow()][loc.getCol()].fullCellText() + "\"";
-				return content;
+				return inspectCell(Command[0]);
+				
 			}
 		}	
-		
 	}
 
-	public String clear(){
-		Cell clear = new EmptyCell();
-		for(int i = 0; i<20;i++){
-			for(int j = 0;j<12;j++){
-				grid [i][j] = clear;
-			}
-		}
-		return getGridText();
-	}
+	
 	public int getRows()
 	{
 		
@@ -84,14 +71,11 @@ public class Spreadsheet implements Grid
 	
 	public String getGridText()
 	{
-		
-		
-		String Grid = ""; 
+		 
 		String topLetter = "   |";
 		for(char i = 'A'; i<='L'; i++){
 			topLetter += i + "         |";
 		}
-		
 		String numbers = "\n";
 		for(int i = 0;i < 20;i++){
 			if(i<9){
@@ -110,10 +94,30 @@ public class Spreadsheet implements Grid
 				numbers +="\n";
 			}
 		}
-		
-		
-		Grid = topLetter + numbers;
-		return Grid;
+		return topLetter + numbers;
 	}
 
+	public void clear(){
+		for(int i = 0; i<20;i++){
+			for(int j = 0;j<12;j++){
+				grid [i][j] = new EmptyCell();
+			}
+		}
+	}
+	
+	public void clearCell(String cell){
+		SpreadsheetLocation loc = new SpreadsheetLocation(cell.toUpperCase());  
+		grid[loc.getRow()][loc.getCol()] = new EmptyCell();
+	}
+	
+	public void assignValue(String cell){
+		SpreadsheetLocation loc = new SpreadsheetLocation(cell.toUpperCase());
+		String input = cell.substring(1, cell.length()-1);
+		grid[loc.getRow()][loc.getCol()] = new TextCell(input);
+	}
+	
+	public String inspectCell(String cell){
+		SpreadsheetLocation loc = new SpreadsheetLocation(cell.toUpperCase()); 
+		return getCell(loc).fullCellText();
+	}
 }
