@@ -11,7 +11,9 @@ public class TextExcel
 	public static void main(String[] args)
 	{
 		
-		
+		String a = "A1 = \"" + "asdfasfadsf" + "\"";
+		String[] b = a.split(" ",3);
+		System.out.println(Arrays.toString(b));
 		
 		Grid test = new Spreadsheet();
 		test.processCommand("A1 = \"Hello\"");

@@ -1,0 +1,9 @@
+package textExcel;
+
+public class PercentCell {
+
+	public PercentCell() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
