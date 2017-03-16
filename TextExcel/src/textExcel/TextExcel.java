@@ -12,13 +12,9 @@ public class TextExcel
 	{
 		
 		
-		Cell a = new EmptyCell();
-		String b = a.abbreviatedCellText();
-		System.out.println(b);
-		Grid test = new Spreadsheet();
-
-		test.processCommand("A1 = \"hahahhahah\"");
 		
+		Grid test = new Spreadsheet();
+		test.processCommand("A1 = \"Hello\"");
 		TestsALL.Helper th = new TestsALL.Helper();
         System.out.println(th.getText());
 		

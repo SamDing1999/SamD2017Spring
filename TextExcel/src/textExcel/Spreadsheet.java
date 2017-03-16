@@ -7,7 +7,7 @@ public class Spreadsheet implements Grid
 
 
 	private String command;
-	private Cell[][] grid = new EmptyCell [20] [12];;
+	private Cell[][] grid = new Cell [20] [12];;
 	
 	public Spreadsheet(){
 
@@ -29,7 +29,7 @@ public class Spreadsheet implements Grid
 			return getGridText();
 			
 		}else if(Command.length == 3){						//assignment to string values (e.g., A1 = "Hello").
-			assignValue(Command);
+			assignValue(Command[0],Command[2]);
 			return getGridText();
 			
 		}else{
@@ -98,6 +98,7 @@ public class Spreadsheet implements Grid
 	}
 
 	public void clear(){
+		//clear the entire grid
 		for(int i = 0; i<20;i++){
 			for(int j = 0;j<12;j++){
 				grid [i][j] = new EmptyCell();
@@ -106,16 +107,19 @@ public class Spreadsheet implements Grid
 	}
 	
 	public void clearCell(String cell){
+		//Clear the value within the assigned cell
 		SpreadsheetLocation loc = new SpreadsheetLocation(cell.toUpperCase());  
 		grid[loc.getRow()][loc.getCol()] = new EmptyCell();
 	}
 	
-	public void assignValue(String[] cell){
-		SpreadsheetLocation loc = new SpreadsheetLocation(cell[0].toUpperCase());
-		grid[loc.getRow()][loc.getCol()] = new TextCell(cell[2]);
+	public void assignValue(String cell, String input){
+		//Assign the value to the given
+		SpreadsheetLocation loc = new SpreadsheetLocation(cell.toUpperCase());
+		grid[loc.getRow()][loc.getCol()] = new TextCell(input);
 	}
 	
 	public String inspectCell(String cell){
+		//Inspect the content of the cell
 		SpreadsheetLocation loc = new SpreadsheetLocation(cell.toUpperCase()); 
 		return getCell(loc).fullCellText();
 	}
