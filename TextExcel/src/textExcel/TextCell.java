@@ -17,7 +17,7 @@ public class TextCell implements Cell {
 			abbreviatedText = content.substring(1, content.length() - 1);
 		}
 		if(abbreviatedText.length() > 10){
-			abbreviatedText = content.substring(0, 10);
+			abbreviatedText = content.substring(1, 11);
 			return abbreviatedText;
 		}else{
 			//fills in the spaces
