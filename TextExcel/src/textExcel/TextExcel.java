@@ -10,15 +10,14 @@ public class TextExcel
 
 	public static void main(String[] args)
 	{
-		
-		String a = "A1 = \"" + "asdfasfadsf" + "\"";
-		String[] b = a.split(" ",3);
-		System.out.println(Arrays.toString(b));
-		
+		Cell a = new TextCell("\"nihaoa\"");
 		Grid test = new Spreadsheet();
-		test.processCommand("A1 = \"Hello\"");
-		TestsALL.Helper th = new TestsALL.Helper();
-        System.out.println(th.getText());
+		System.out.println(a.abbreviatedCellText());
+		test.processCommand("C6 = hggdhrudtdrdfhyduyt");
+		System.out.println(test.processCommand("C6"));
+		System.out.println(test.processCommand("C6 = \"hggdhrudtdrdfhyduyt\""));
+		//TestsALL.Helper th = new TestsALL.Helper();
+        //System.out.println(th.getText());
 		
 		Scanner input = new Scanner(System.in);
 		String command = input.next();

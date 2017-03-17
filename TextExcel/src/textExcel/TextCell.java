@@ -5,38 +5,34 @@ public class TextCell implements Cell {
 	private String content;
 	
 	public TextCell(String s) {
-		content = s;
+		this.content = s;
 	}
 	public void setTextCell(String str){
 		content = str;
 	}
 	public String abbreviatedCellText() {
-		String abbreviatedString = "";
+		String abbreviatedText = content;
 		
-		if(content.substring(0,1) == "\""){
-			abbreviatedString = content.substring(1, content.length() - 1);
+		if(content.charAt(0) == '\"'){
+			abbreviatedText = content.substring(1, content.length() - 1);
 		}
-		if(abbreviatedString.length() > 10){
-			abbreviatedString = abbreviatedString.substring(0, 10);
-			return abbreviatedString;
+		if(abbreviatedText.length() > 10){
+			abbreviatedText = content.substring(0, 10);
+			return abbreviatedText;
 		}else{
 			//fills in the spaces
-			for(int i = 0; i<10-abbreviatedString.length();i++){
-				abbreviatedString += " ";
+			while(abbreviatedText.length()<10){
+				abbreviatedText += " ";
 
 			}
-			return abbreviatedString;
+			return abbreviatedText;
 		}
 	}
 
 	
 	public String fullCellText() {
-		String fullText = content;
-		if(content.substring(0,1) == "\""){
-			return fullText;
-		}else{
-			return fullText;
-		}
+		return content;
+		
 	}
 
 }
