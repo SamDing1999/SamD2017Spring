@@ -2,20 +2,25 @@ package textExcel;
 
 public class RealCell implements Cell {
 
-	public RealCell() {
-		// TODO Auto-generated constructor stub
+	private String UserInput;
+	
+	public RealCell(String input) {
+		UserInput = input;
 	}
 
-	@Override
 	public String abbreviatedCellText() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return "          ";
 	}
 
-	@Override
+
 	public String fullCellText() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return UserInput;
+	}
+	
+	public double getDoubleValue(String value){
+		return Double.parseDouble(value);
 	}
 
 }

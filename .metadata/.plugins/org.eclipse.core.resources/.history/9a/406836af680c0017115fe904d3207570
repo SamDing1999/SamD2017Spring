@@ -1,0 +1,23 @@
+package textExcel;
+
+public class RealCell implements Cell {
+
+	private String input;
+	public RealCell(String input) {
+		this.input = input;
+	}
+
+	public String abbreviatedCellText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public String fullCellText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public 
+
+}
