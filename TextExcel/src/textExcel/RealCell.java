@@ -2,10 +2,10 @@ package textExcel;
 
 public class RealCell implements Cell {
 
-	private String UserInput;
+	private String input;
 	
 	public RealCell(String input) {
-		UserInput = input;
+		this.input = input;
 	}
 
 	public String abbreviatedCellText() {
@@ -16,7 +16,7 @@ public class RealCell implements Cell {
 
 	public String fullCellText() {
 
-		return UserInput;
+		return this.input;
 	}
 	
 	public double getDoubleValue(String value){

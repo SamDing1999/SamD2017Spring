@@ -111,7 +111,19 @@ public class Spreadsheet implements Grid
 	public void assignValue(String cell, String input){
 		//Assign the value to the given
 		SpreadsheetLocation loc = new SpreadsheetLocation(cell.toUpperCase());
-		grid[loc.getRow()][loc.getCol()] = new TextCell(input.trim());
+
+		if (input.charAt(1) == 34){ //a text cell
+			grid [loc.getCol()] [loc.getRow()] = new TextCell (input.trim());
+		}
+		else if (input.substring(input.length()-1).equals("%")){ //a percent cell
+			grid [loc.getCol()] [loc.getRow()] = new PercentCell (input.trim());	
+		}
+		else if (input.substring(input.length()-1).equals(")")){ //a formula cell
+			grid [loc.getCol()] [loc.getRow()] = new FormulaCell (input.trim());	
+		}
+		else { //a value cell
+			grid [loc.getCol()] [loc.getRow()] = new ValueCell (input.trim());	
+		}
 	}
 	
 	public String inspectCell(String cell){

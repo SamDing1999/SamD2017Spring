@@ -1,20 +1,29 @@
 package textExcel;
 
-public class ValueCell extends RealCell{
+public class ValueCell extends RealCell implements Cell{
 
-	public ValueCell() {
-		// TODO Auto-generated constructor stub
+
+	private String input;
+	
+	public ValueCell (String input){
+		super (input);
+
 	}
-	@Override
+
 	public String abbreviatedCellText() {
-		// TODO Auto-generated method stub
-		return null;
+
+		String abrv = GetDoubleValue(input)+"";
+		abrv += "          ";
+		return abrv.substring(0,10);
 	}
 
-	@Override
 	public String fullCellText() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return GetDoubleValue(input)+"";
+	}
+	
+	public double GetDoubleValue (String words){
+		return Double.parseDouble(input);
 	}
 
 }

@@ -1,0 +1,27 @@
+package textExcel;
+
+public class RealCell implements Cell {
+
+
+	private String input;
+	 
+	public RealCell (String words){
+		this.input = words;
+	}
+
+	public String abbreviatedCellText() {
+
+		return "          ";
+	}
+
+
+	public String fullCellText() {
+
+		return input;
+	}
+	
+	public double getDoubleValue(String words){
+		return Double.parseDouble(words);
+	}
+	
+}
