@@ -19,8 +19,8 @@ public class RealCell implements Cell {
 		return this.input;
 	}
 	
-	public double getDoubleValue(String value){
-		return Double.parseDouble(value);
+	public double getDoubleValue(){
+		return Double.parseDouble(input);
 	}
 
 }

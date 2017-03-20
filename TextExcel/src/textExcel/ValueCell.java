@@ -7,22 +7,22 @@ public class ValueCell extends RealCell implements Cell{
 	
 	public ValueCell (String input){
 		super (input);
-
+		this.input = input;
 	}
 
 	public String abbreviatedCellText() {
 
-		String abrv = GetDoubleValue(input)+"";
+		String abrv = GetDoubleValue()+"";
 		abrv += "          ";
 		return abrv.substring(0,10);
 	}
 
 	public String fullCellText() {
 
-		return GetDoubleValue(input)+"";
+		return GetDoubleValue()+"";
 	}
 	
-	public double GetDoubleValue (String words){
+	public double GetDoubleValue (){
 		return Double.parseDouble(input);
 	}
 

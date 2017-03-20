@@ -5,7 +5,7 @@ public class PercentCell extends RealCell implements Cell{
 	private String input;
 	public PercentCell (String input){
 		super (input);
-
+		this.input = input;
 	}
 	
 	public String abbreviatedCellText() {
@@ -16,16 +16,17 @@ public class PercentCell extends RealCell implements Cell{
 			abrv = input.substring(0, input.indexOf("."));
 		}
 		abrv += "%          ";
+		
 		return abrv.substring(0,10);
 	}
 
 	public String fullCellText() {
 
-		return GetDoubleValue(input)+"";
+		return GetDoubleValue()+"";
 	}
 	
-	public double GetDoubleValue (String words){
-		return Double.parseDouble(words.substring(0, words.length()-1))/100;
+	public double GetDoubleValue (){
+		return Double.parseDouble(input.substring(0, input.length()-1))/100;
 		
 	}
 

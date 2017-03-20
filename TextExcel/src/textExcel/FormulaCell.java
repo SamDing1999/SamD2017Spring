@@ -6,7 +6,7 @@ private String input;
 	
 	public FormulaCell (String input){
 		super (input);
-
+		this.input = input;
 	}
 	
 
@@ -21,7 +21,7 @@ private String input;
 		return input;
 	}
 	
-	public double GetDoubleValue (String words){
-		return Double.parseDouble(words);
+	public double GetDoubleValue (){
+		return Double.parseDouble(input);
 	}
 }
