@@ -112,17 +112,17 @@ public class Spreadsheet implements Grid
 		//Assign the value to the given
 		SpreadsheetLocation loc = new SpreadsheetLocation(cell.toUpperCase());
 
-		if (input.charAt(1) == 34){ //a text cell
-			grid [loc.getCol()] [loc.getRow()] = new TextCell (input.trim());
+		if (input.trim().charAt(0) == 34){ //a text cell
+			grid [loc.getRow()] [loc.getCol()] = new TextCell (input.trim());
 		}
 		else if (input.substring(input.length()-1).equals("%")){ //a percent cell
-			grid [loc.getCol()] [loc.getRow()] = new PercentCell (input.trim());	
+			grid [loc.getRow()] [loc.getCol()] = new PercentCell (input.trim());	
 		}
-		else if (input.substring(input.length()-1).equals(")")){ //a formula cell
-			grid [loc.getCol()] [loc.getRow()] = new FormulaCell (input.trim());	
+		else if (input.trim().charAt(0) == ('(')){ //a formula cell
+			grid [loc.getRow()] [loc.getCol()] = new FormulaCell (input.trim());	
 		}
 		else { //a value cell
-			grid [loc.getCol()] [loc.getRow()] = new ValueCell (input.trim());	
+			grid [loc.getRow()] [loc.getCol()] = new ValueCell (input.trim());	
 		}
 	}
 	

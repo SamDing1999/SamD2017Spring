@@ -10,7 +10,9 @@ public class RealCell implements Cell {
 
 	public String abbreviatedCellText() {
 		
-		return "          ";
+		String abrv = input;
+		abrv += "          ";
+		return abrv.substring(0, 10);
 	}
 
 
