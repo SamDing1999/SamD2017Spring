@@ -10,7 +10,7 @@ public class PercentCell extends RealCell implements Cell{
 	
 	public String abbreviatedCellText() {
 		String abrv;
-		if(input.indexOf(".")<0){
+		if(input.indexOf(".") == -1){
 			abrv = input;
 		}else{
 			abrv = input.substring(0, input.indexOf("."));

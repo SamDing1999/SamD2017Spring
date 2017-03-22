@@ -515,7 +515,7 @@ public class TestsALL
         @Test
         public void testRealCellTruncation()
         {
-            String big = "-9876543212345";
+            String big = "-9876543212345"; 	
             grid.processCommand("A1 = " + big);
             Cell bigCell = grid.getCell(new TestLocation(0, 0));
             assertEquals("real big cell length", 10, bigCell.abbreviatedCellText().length());

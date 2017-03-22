@@ -12,10 +12,7 @@ public class ValueCell extends RealCell implements Cell{
 
 	public String abbreviatedCellText() {
 
-		String abrv = input;
-		if(abrv.indexOf(".") == -1){
-			abrv += ".0";
-		}
+		String abrv = GetDoubleValue () + "";
 		abrv += "          ";
 		
 		return abrv.substring(0,10);
