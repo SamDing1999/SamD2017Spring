@@ -12,15 +12,15 @@ public class TextExcel
 
 	public static void main(String[] args)
 	{
-		String greeting = "3.14159265358979";
-
+		String greeting = "98828938298392839";
+		System.out.println(Double.parseDouble(greeting) + "");
 		
 		
 		Grid test = new Spreadsheet();
 		String a = test.processCommand("a2 = " + greeting);
 		Cell bigCell = test.getCell(new TestLocation(0, 0));
-		double c = Double.parseDouble(greeting);
-		System.out.println(c);
+
+		System.out.println(a);
 
 		//TestsALL.Helper th = new TestsALL.Helper();
         //System.out.println(th.getText());

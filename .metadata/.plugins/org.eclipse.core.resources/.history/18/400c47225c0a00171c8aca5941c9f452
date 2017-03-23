@@ -1,9 +1,0 @@
-package textExcel;
-
-public class FormulaCell {
-
-	public FormulaCell() {
-		// TODO Auto-generated constructor stub
-	}
-
-}
