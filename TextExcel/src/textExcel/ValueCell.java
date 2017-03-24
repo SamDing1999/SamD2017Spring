@@ -23,7 +23,7 @@ public class ValueCell extends RealCell implements Cell{
 
 	public String fullCellText() {
 		
-		return GetDoubleValue()+"";
+		return input;
 		
 	}
 	public double GetDoubleValue (){
