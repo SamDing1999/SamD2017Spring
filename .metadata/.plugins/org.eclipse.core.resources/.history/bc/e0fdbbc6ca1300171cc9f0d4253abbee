@@ -1,5 +1,6 @@
 package textExcel;
-
+import java.io.*;
+import java.util.Scanner;
 
 
 public class Spreadsheet implements Grid
@@ -112,13 +113,13 @@ public class Spreadsheet implements Grid
 		//Assign the value to the given
 		SpreadsheetLocation loc = new SpreadsheetLocation(cell.toUpperCase());
 
-		if (input.charAt(1) == 34){ //a text cell
+		if (input.trim().charAt(0) == 34){ //a text cell
 			grid [loc.getRow()] [loc.getCol()] = new TextCell (input.trim());
 		}
 		else if (input.substring(input.length()-1).equals("%")){ //a percent cell
 			grid [loc.getRow()] [loc.getCol()] = new PercentCell (input.trim());	
 		}
-		else if (input.charAt(1) == ('(')){ //a formula cell
+		else if (input.trim().charAt(0) == ('(')){ //a formula cell
 			grid [loc.getRow()] [loc.getCol()] = new FormulaCell (input.trim());	
 		}
 		else { //a value cell
@@ -131,4 +132,63 @@ public class Spreadsheet implements Grid
 		SpreadsheetLocation loc = new SpreadsheetLocation(cell.toUpperCase()); 
 		return getCell(loc).fullCellText();
 	}
+
+
+
+private String Opening (String filename){ 
+
+    PrintStream outputFile;
+
+    try {
+
+           outputFile = new PrintStream(new File(filename));
+
+    }
+
+catch (FileNotFoundException e) {
+
+           return "File not found: " + filename;
+
+      }
+
+<Write all your code here>
+
+outputFile.close();
+
+return <something>;
+
 }
+
+
+private String Saving(String filename){
+
+	Scanner inputFile = new Scanner(new File(filename));
+
+
+catch (FileNotFoundException e) {
+
+           return "File not found: " + filename;
+
+       }
+
+//<Your code goes here>
+
+    inputFile.close();
+
+return <something>;
+
+	}
+
+
+}
+
+
+
+
+
+
+
+
+
+
+

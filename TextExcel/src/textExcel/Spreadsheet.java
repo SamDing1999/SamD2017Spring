@@ -1,4 +1,6 @@
 package textExcel;
+import static org.junit.Assert.assertEquals;
+
 import java.io.*;
 import java.util.Scanner;
 
@@ -134,61 +136,4 @@ public class Spreadsheet implements Grid
 	}
 
 
-
-private String Opening (String filename){ 
-
-    PrintStream outputFile;
-
-    try {
-
-           outputFile = new PrintStream(new File(filename));
-
-    }
-
-catch (FileNotFoundException e) {
-
-           return "File not found: " + filename;
-
-      }
-
-<Write all your code here>
-
-outputFile.close();
-
-return <something>;
-
 }
-
-
-private String Saving(String filename){
-
-	Scanner inputFile = new Scanner(new File(filename));
-
-
-catch (FileNotFoundException e) {
-
-           return "File not found: " + filename;
-
-       }
-
-//<Your code goes here>
-
-    inputFile.close();
-
-return <something>;
-
-	}
-
-
-}
-
-
-
-
-
-
-
-
-
-
-

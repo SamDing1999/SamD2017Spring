@@ -7,7 +7,7 @@ public class ValueCell extends RealCell implements Cell{
 	
 	public ValueCell (String input){
 		super (input);
-		this.input = input;
+		
 	}
 
 	public String abbreviatedCellText() {

@@ -22,6 +22,7 @@ private String input;
 	}
 	
 	public double GetDoubleValue (){
+		
 		return Double.parseDouble(input);
 	}
 }
