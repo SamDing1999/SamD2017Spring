@@ -1,67 +1,91 @@
 package textExcel;
 
-public class RealCell implements Cell {
-
-private String value;
-	
-	public String abbreviatedCellText()
-	{
-		String Final = value;
-		if (value.contains("%") && value.contains(".")) {
-			Final =	value.replace(value.substring(value.indexOf(".")), "%");
-		}
-		else if (!value.contains("%")) { 
-			Final = Double.parseDouble(value) + "";
-		}
-	
-	
-		if (Final.length() > 10) {
-			return Final.substring(0, 10);
-		}else { 
-			
-			for (int i = Final.length(); i < 10; i++) {
-				Final += " ";
+public abstract class RealCell implements Cell {
+	private String userInput = "";
+	private int counter = 0;
+	//abstract classto make the subclasses contain this method
+	public abstract double getDoubleValue();
+	public String abbreviatedCellText() {
+		if(userInput.length() < 10){
+			//has to be percent with this sign
+			if(userInput.contains("%")){
+				//makes a placeholder so it doesnt affect full cell text
+				String placeholder = userInput.substring(0, userInput.indexOf(".")) + "%";
+				//formats to have 10 spaces
+				return addSpaces(placeholder);
 			}
-			return Final;
+			//checks if its a whole number thats a value cell, no percent or formula cell
+			if(!userInput.contains(".") && !userInput.contains("(")){
+				String anotherPlaceholder = userInput + ".0";
+				return addSpaces(anotherPlaceholder);
+			}
+			//the one exception to having 2 zeros next to each other, treats it differently and just adds spaces
+			if(userInput.equals("0.0")){
+				userInput = addSpaces(userInput);
+				return userInput;
+			}
+			//reverse for loop to check for two or more zeros together from the end
+			if(!userInput.contains("(")){
+				for(int i = userInput.length()-1; i >=0; i--){
+					//ends the loop if its not a zero
+					if(userInput.charAt(i) != '0'){
+						i = 0;
+					}
+					if(userInput.charAt(i) == '0'){
+						counter ++;
+						//checks to see if there is 2 zeros in a row
+						if(counter >= 2){
+							userInput = userInput.substring(0, i);
+						}
+					}
+
+				}
+			}
+			//adds a .0 if theres nothing after the decimal
+			if(userInput.charAt(userInput.length()-1) == '.'){
+				userInput = userInput + "0";
+			}
+			userInput = addSpaces(userInput);
+			//if longer than 10, shortens to 10
+		} else if(userInput.length() > 10){
+			return userInput.substring(0, 10);
 		}
+		return userInput;
+	}
+
+	public String getRealCell(){
+		return userInput;
+	}
+	public void setRealCell(String value){
+		userInput = value;
 	}
 	public String fullCellText() {
-		String value = getDoubleValue() + "";
-			if(getValue().equals("0")) {
-				return getValue();
-			}else if (!value.contains("%") && value.contains(".0") 
-					  && isDecimalEqualToZero(value)
-					  && value.replace("-", "").length() > 3) {
-				return value.substring(0, value.indexOf("."));
-			}else if (!value.contains("%") && !value.contains(".")) {
-				value += ".0";
-			}
-		return value;
-	}
-	
-	public String getValue() {
-		return this.value;
-	}
-	
-	public void setValue(String text) {
-		this.value = text;
-	}
-	
-	private boolean isDecimalEqualToZero(String doubleValue) {
-		if (doubleValue.contains("%")) {
-			return false;
+		RealCell whatever;
+		if(userInput.equals("0")){
+			return "0";
 		}
-		String[] n = doubleValue.split("\\.");
-		if(n.length > 1) {
-			// get the value to right of decimal point
-			int d = Integer.parseInt(n[1]);
-			return d == 0;
+		//finds the right cell form
+		if(userInput.contains("%")){
+			whatever = new PercentCell(userInput);
+		} else if(userInput.contains("(")){
+			whatever = new FormulaCell(userInput);
 		}else{
-			return true;
+			whatever = new ValueCell(userInput);
 		}
-		
+		//switches double to string to get rid of extra 0s at the end
+		String removeZeros = whatever.getDoubleValue() + "";
+		//makes sure number is positive and longer than one place value
+		if((removeZeros.substring(removeZeros.indexOf(".")).equalsIgnoreCase(".0")) && ((whatever.getDoubleValue() > 0) && (removeZeros.length() > 3))){
+			return removeZeros.substring(0, removeZeros.indexOf("."));
+		}
+		return whatever.getDoubleValue() + "";
+
 	}
-	public double getDoubleValue(){
-		return 0.0;
+	public String addSpaces(String placeholder){
+		//formats abbreviatedCellText to length 10 if its too short
+		while(placeholder.length() < 10){
+			placeholder += " ";
+		}
+		return placeholder;
 	}
 }

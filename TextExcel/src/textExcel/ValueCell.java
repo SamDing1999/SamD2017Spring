@@ -1,33 +1,16 @@
 package textExcel;
 
-public class ValueCell extends RealCell implements Cell{
-
-
-	private String input;
-	
-	public ValueCell (String input){
-		this.input = input;
-		
+public class ValueCell extends RealCell{
+	private String value = "";
+	public ValueCell(String a){
+		value = a;
+		//stores string in parent class
+		setRealCell(a);
 	}
-
-	public String abbreviatedCellText() {
-		String abrv;
-		if(input.length()>10){
-			abrv = input.substring(0,10);
-		}else{
-			abrv = GetDoubleValue () + "";
-			abrv += "          ";
-		}
-		return abrv.substring(0,10);
-	}
-
-	public String fullCellText() {
-		
-		return input;
-		
-	}
-	public double GetDoubleValue (){
-		return Double.parseDouble(input);
+	public double getDoubleValue(){
+		//changes string to double
+		double placeHolder = Double.parseDouble(value);
+		return placeHolder;
 	}
 
 }
