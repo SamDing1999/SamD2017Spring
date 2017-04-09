@@ -4,7 +4,6 @@ public class PercentCell extends RealCell implements Cell{
 
 	private String input;
 	public PercentCell (String input){
-		super (input);
 		this.input = input;
 	}
 	

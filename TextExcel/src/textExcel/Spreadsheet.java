@@ -122,7 +122,7 @@ public class Spreadsheet implements Grid
 			grid [loc.getRow()] [loc.getCol()] = new PercentCell (input.trim());	
 		}
 		else if (input.trim().charAt(0) == ('(')){ //a formula cell
-			grid [loc.getRow()] [loc.getCol()] = new FormulaCell (input.trim());	
+			grid [loc.getRow()] [loc.getCol()] = new FormulaCell (input.trim(),this);	
 		}
 		else { //a value cell
 			grid [loc.getRow()] [loc.getCol()] = new ValueCell (input.trim());	
@@ -133,6 +133,13 @@ public class Spreadsheet implements Grid
 		//Inspect the content of the cell
 		SpreadsheetLocation loc = new SpreadsheetLocation(cell.toUpperCase()); 
 		return getCell(loc).fullCellText();
+	}
+	public Cell [][] getSheet() {
+		return this.grid;
+	}
+	public SpreadsheetLocation getLocation(String command) {
+		SpreadsheetLocation location = new SpreadsheetLocation(command);
+		return location;
 	}
 
 
