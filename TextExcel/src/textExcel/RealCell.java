@@ -1,91 +1,89 @@
 package textExcel;
 
 public abstract class RealCell implements Cell {
-	private String userInput = "";
-	private int counter = 0;
-	//abstract classto make the subclasses contain this method
+	private String input = "";
+	private int count = 0;
 	public abstract double getDoubleValue();
 	public String abbreviatedCellText() {
-		if(userInput.length() < 10){
-			//has to be percent with this sign
-			if(userInput.contains("%")){
-				//makes a placeholder so it doesnt affect full cell text
-				String placeholder = userInput.substring(0, userInput.indexOf(".")) + "%";
-				//formats to have 10 spaces
+		if(input.length() < 10){
+			//percent
+			if(input.contains("%")){
+				String placeholder = input.substring(0, input.indexOf(".")) + "%";
 				return addSpaces(placeholder);
 			}
 			//checks if its a whole number thats a value cell, no percent or formula cell
-			if(!userInput.contains(".") && !userInput.contains("(")){
-				String anotherPlaceholder = userInput + ".0";
+			if(!input.contains(".") && !input.contains("(")){
+				String anotherPlaceholder = input + ".0";
 				return addSpaces(anotherPlaceholder);
 			}
 			//the one exception to having 2 zeros next to each other, treats it differently and just adds spaces
-			if(userInput.equals("0.0")){
-				userInput = addSpaces(userInput);
-				return userInput;
+			if(input.equals("0.0")){
+				input = addSpaces(input);
+				return input;
 			}
 			//reverse for loop to check for two or more zeros together from the end
-			if(!userInput.contains("(")){
-				for(int i = userInput.length()-1; i >=0; i--){
+			if(!input.contains("(")){
+				for(int i = input.length()-1; i >=0; i--){
 					//ends the loop if its not a zero
-					if(userInput.charAt(i) != '0'){
+					if(input.charAt(i) != '0'){
 						i = 0;
 					}
-					if(userInput.charAt(i) == '0'){
-						counter ++;
+					if(input.charAt(i) == '0'){
+						count ++;
 						//checks to see if there is 2 zeros in a row
-						if(counter >= 2){
-							userInput = userInput.substring(0, i);
+						if(count >= 2){
+							input = input.substring(0, i);
 						}
 					}
 
 				}
 			}
-			//adds a .0 if theres nothing after the decimal
-			if(userInput.charAt(userInput.length()-1) == '.'){
-				userInput = userInput + "0";
+			//adds a .0 if there's nothing after the decimal
+			if(input.charAt(input.length()-1) == '.'){
+				input = input + "0";
 			}
-			userInput = addSpaces(userInput);
+			input = addSpaces(input);
 			//if longer than 10, shortens to 10
-		} else if(userInput.length() > 10){
-			return userInput.substring(0, 10);
+		} else if(input.length() > 10){
+			return input.substring(0, 10);
 		}
-		return userInput;
+		return input;
 	}
 
 	public String getRealCell(){
-		return userInput;
+		return input;
 	}
+	
 	public void setRealCell(String value){
-		userInput = value;
+		input = value;
 	}
+	
 	public String fullCellText() {
-		RealCell whatever;
-		if(userInput.equals("0")){
+		RealCell cell;
+		if(input.equals("0")){
 			return "0";
 		}
 		//finds the right cell form
-		if(userInput.contains("%")){
-			whatever = new PercentCell(userInput);
-		} else if(userInput.contains("(")){
-			whatever = new FormulaCell(userInput);
+		if(input.contains("%")){
+			cell = new PercentCell(input);
+			//formulacell is overridden for fullcelltext
 		}else{
-			whatever = new ValueCell(userInput);
+			cell = new ValueCell(input);
 		}
 		//switches double to string to get rid of extra 0s at the end
-		String removeZeros = whatever.getDoubleValue() + "";
+		String removeZeros = cell.getDoubleValue() + "";
 		//makes sure number is positive and longer than one place value
-		if((removeZeros.substring(removeZeros.indexOf(".")).equalsIgnoreCase(".0")) && ((whatever.getDoubleValue() > 0) && (removeZeros.length() > 3))){
+		if((removeZeros.substring(removeZeros.indexOf(".")).equalsIgnoreCase(".0")) && ((cell.getDoubleValue() > 0) && (removeZeros.length() > 3))){
 			return removeZeros.substring(0, removeZeros.indexOf("."));
 		}
-		return whatever.getDoubleValue() + "";
+		return cell.getDoubleValue() + "";
 
-	}
-	public String addSpaces(String placeholder){
+}
+	public String addSpaces(String hold){
 		//formats abbreviatedCellText to length 10 if its too short
-		while(placeholder.length() < 10){
-			placeholder += " ";
+		while(hold.length() < 10){
+			hold += " ";
 		}
-		return placeholder;
+		return hold;
 	}
 }
